@@ -1,9 +1,12 @@
 import React from 'react';
+import Form from './Form';
+import '../css/Homepage.css';
 
 export default function Home() {
   return (
-    <div className="App">
+    <section className="App">
       <h1 className="homepage-title">Welcome to React TodoList!</h1>
-    </div>
+      <Form />
+    </section>
   );
 }
