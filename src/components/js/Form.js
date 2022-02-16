@@ -4,8 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 export default function Form() {
+  function handleSubmit(event) {
+    event.preventDafault();
+    // console.log('working');
+  }
   return (
-    <form id="form">
+    <form id="form" onSubmit={handleSubmit}>
       <input className="todo-input-box" type="text" placeholder="Insert a todo..." />
       <button type="submit" className="submit-todo-button-container">
         <FontAwesomeIcon icon={faPlus} />
