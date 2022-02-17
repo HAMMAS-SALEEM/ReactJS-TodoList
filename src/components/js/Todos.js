@@ -1,4 +1,7 @@
 import React from 'react';
+import '../css/Todos.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export default function Todos() {
   const arr = [{ id: 1, title: 'Get up early', completed: false },
@@ -7,7 +10,18 @@ export default function Todos() {
     { id: 4, title: 'Complete remaining project', completed: false }];
   return (
     arr.map((element) => (
-      <li key={element.id}>{element.title}</li>
+      <li className="todo-item" key={element.id}>
+        <ul className="todo-item-inner">
+          <li>
+            <input className="todo-detail todo-checkbox" type="checkbox" />
+            <input className="todo-detail todo-value" type="text" defaultValue={element.title} />
+          </li>
+          <li className="trash-icon-container">
+            <FontAwesomeIcon icon={faTrash} />
+          </li>
+        </ul>
+        <hr />
+      </li>
     ))
   );
 }

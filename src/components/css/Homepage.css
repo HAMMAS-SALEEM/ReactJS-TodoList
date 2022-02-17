@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 100px;
+  margin: 100px 0;
 }
 
 #form {
@@ -21,10 +21,12 @@
   outline: none;
 }
 
-.submit-todo-button-container {
+.submit-todo-button-container,
+.submit-todo-button-container:focus {
   background-color: white;
   color: rgb(4, 137, 170);
   border: none;
   border-radius: 50%;
   font-size: 20px;
+  cursor: pointer;
 }
