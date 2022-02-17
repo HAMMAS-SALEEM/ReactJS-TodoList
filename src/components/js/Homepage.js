@@ -3,12 +3,19 @@ import Form from './Form';
 import '../css/Homepage.css';
 import Todos from './Todos';
 import NavLinks from './NavLinks';
-import { getLocStorage, setLocStorage } from './StorageManager';
 
 export default function Home() {
   const [todo, setTodo] = useState('');
+  const [storage, setStorage] = useState(JSON.parse(localStorage.getItem('todos')) ? JSON.parse(localStorage.getItem('todos')) : []);
   const handleChange = (event) => {
     setTodo(event.target.value);
+  };
+
+  const handleRemove = (event) => {
+    const { id } = event.target.parentNode.parentNode.parentNode.parentNode;
+    const updatedStore = storage.filter((element) => element.id.toString() !== id);
+    localStorage.setItem('todos', JSON.stringify(updatedStore));
+    setStorage(updatedStore);
   };
 
   const handleSubmit = (event) => {
@@ -16,13 +23,10 @@ export default function Home() {
     if (todo) {
       const form = event.target;
       const obj = { id: new Date().getTime().toString(), title: todo, completed: false };
-      const locStorage = getLocStorage();
-      locStorage.push(obj);
-      console.log(locStorage);
-      setLocStorage(locStorage);
-      Todos();
-      form.reset();
+      setStorage([...storage, obj]);
+      localStorage.setItem('todos', JSON.stringify([...storage, obj]));
       setTodo('');
+      form.reset();
     }
   };
 
@@ -33,7 +37,7 @@ export default function Home() {
         <h1 className="homepage-title">Welcome to React TodoList!</h1>
         <Form handleChange={handleChange} handleSubmit={handleSubmit} />
         <ul className="todos-container">
-          <Todos />
+          <Todos handleRemove={handleRemove} storage={storage} />
         </ul>
       </section>
     </>
