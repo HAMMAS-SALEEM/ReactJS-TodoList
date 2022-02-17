@@ -24,10 +24,25 @@ export default function Home() {
       const form = event.target;
       const obj = { id: new Date().getTime().toString(), title: todo, completed: false };
       setStorage([...storage, obj]);
+      console.log([...storage]);
       localStorage.setItem('todos', JSON.stringify([...storage, obj]));
       setTodo('');
       form.reset();
     }
+  };
+
+  const todoStatus = (event) => {
+    const { id } = event.target;
+    const newStorage = storage.find((item) => item.id === id);
+    newStorage.completed = newStorage.completed
+      ? newStorage.completed = false
+      : newStorage.completed = true;
+    storage.map(() => ({
+      ...storage,
+      ...storage.find((item) => item.id.toString() === newStorage.id.toString()),
+    }));
+    setStorage(storage);
+    localStorage.setItem('todos', JSON.stringify(storage));
   };
 
   return (
@@ -37,7 +52,7 @@ export default function Home() {
         <h1 className="homepage-title">Welcome to React TodoList!</h1>
         <Form handleChange={handleChange} handleSubmit={handleSubmit} />
         <ul className="todos-container">
-          <Todos handleRemove={handleRemove} storage={storage} />
+          <Todos handleRemove={handleRemove} todoStatus={todoStatus} storage={storage} />
         </ul>
       </section>
     </>
