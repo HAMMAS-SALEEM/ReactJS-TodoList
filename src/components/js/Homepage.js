@@ -3,6 +3,7 @@ import Form from './Form';
 import '../css/Homepage.css';
 import Todos from './Todos';
 import NavLinks from './NavLinks';
+import { getLocStorage, setLocStorage } from './StorageManager';
 
 export default function Home() {
   const [todo, setTodo] = useState('');
@@ -15,15 +16,15 @@ export default function Home() {
     if (todo) {
       const form = event.target;
       const obj = { id: new Date().getTime().toString(), title: todo, completed: false };
-      console.log(obj);
+      const locStorage = getLocStorage();
+      locStorage.push(obj);
+      console.log(locStorage);
+      setLocStorage(locStorage);
+      Todos();
       form.reset();
       setTodo('');
     }
   };
-
-  // const setLocStorage = (data) => localStorage.setItem('todos', JSON.stringify(data));
-
-  // const getLocStorage = () => JSON.parse(localStorage.getItem('todos'));
 
   return (
     <>
