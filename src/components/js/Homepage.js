@@ -31,18 +31,16 @@ export default function Home() {
     }
   };
 
-  const todoStatus = (event) => {
-    const { id } = event.target;
-    const newStorage = storage.find((item) => item.id === id);
-    newStorage.completed = newStorage.completed
-      ? newStorage.completed = false
-      : newStorage.completed = true;
-    storage.map(() => ({
-      ...storage,
-      ...storage.find((item) => item.id.toString() === newStorage.id.toString()),
-    }));
-    setStorage(storage);
-    localStorage.setItem('todos', JSON.stringify(storage));
+  const todoStatus = (id, input) => {
+    const newStorage = [...storage];
+    const todo = newStorage.find((item) => item.id === id);
+    if (input) {
+      todo.title = input;
+    } else {
+      todo.completed = !todo.completed;
+    }
+    setStorage(newStorage);
+    localStorage.setItem('todos', JSON.stringify(newStorage));
   };
 
   return (
