@@ -12,7 +12,7 @@ export default function Home() {
   };
 
   const handleRemove = (event) => {
-    const { id } = event.target.parentNode.parentNode.parentNode.parentNode;
+    const { id } = event.target.parentNode;
     const updatedStore = storage.filter((element) => element.id.toString() !== id);
     localStorage.setItem('todos', JSON.stringify(updatedStore));
     setStorage(updatedStore);
@@ -24,7 +24,6 @@ export default function Home() {
       const form = event.target;
       const obj = { id: new Date().getTime().toString(), title: todo, completed: false };
       setStorage([...storage, obj]);
-      console.log([...storage]);
       localStorage.setItem('todos', JSON.stringify([...storage, obj]));
       setTodo('');
       form.reset();

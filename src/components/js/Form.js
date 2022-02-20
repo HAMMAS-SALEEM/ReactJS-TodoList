@@ -4,11 +4,10 @@ import '../css/Homepage.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
-export default function Form(props) {
-  const { handleChange, handleSubmit } = props;
+export default function Form({ handleChange, handleSubmit }) {
   return (
     <form id="form" onSubmit={handleSubmit}>
-      <input className="todo-input-box" type="text" placeholder="Insert a todo..." onChange={handleChange} />
+      <input className="todo-input-box" type="text" placeholder="Insert a todo..." onChange={handleChange} required />
       <button type="submit" className="submit-todo-button-container">
         <FontAwesomeIcon icon={faPlus} />
       </button>
