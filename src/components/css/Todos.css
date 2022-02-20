@@ -1,0 +1,46 @@
+.todo-item,
+.todo-item-inner {
+  list-style: none;
+}
+
+.todo-item {
+  margin-top: 15px;
+}
+
+.todo-item-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  width: 320px;
+}
+
+.todo-detail {
+  margin-left: 5px;
+}
+
+.todo-value {
+  font-size: 18px;
+  height: 30px;
+  border: none;
+}
+
+.trash-icon-container {
+  margin-right: 10px;
+  height: 40px;
+  width: 40px;
+  background-color: rgb(240, 240, 240);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.fa-trash {
+  color: orangered;
+}
+
+.checked .todo-value {
+  text-decoration: line-through;
+}
